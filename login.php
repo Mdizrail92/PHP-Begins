@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <a href="signup.php">Sign UP</a>
     </form>
+    <p>Forgot Password</p>
+    <a href="forgot_password.php">Recover</a>
 </body>
 
 </html>
