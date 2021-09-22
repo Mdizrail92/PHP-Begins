@@ -7,7 +7,7 @@ include("functions.php");
 $user_data = check_login($conn);
 
 date_default_timezone_set('Asia/Kolkata');
-include('comments.php');
+
 
 
 
@@ -28,10 +28,10 @@ include('comments.php');
 <body>
     <div class="container">
         <a href="logout.php">Logout</a>
-        <h1>Hello World From Israel and Harshavardhan Reddy</h1>
+        <h1>Hello World From <?php echo $user_data['username']; ?></h1>
         <br>
-        <h3>This is <?php echo $user_data['username']; ?> </h3>
-
+        <a href="gallery.php">Go to gallery</a>
+        <br>
 
         <div class="spacer" style="height: 100px;"></div>
         <!-- comment section -->
