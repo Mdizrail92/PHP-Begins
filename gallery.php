@@ -4,7 +4,6 @@ session_start();
 include("connection.php");
 include("functions.php");
 
-
 date_default_timezone_set('Asia/Kolkata');
 
 // images insertion in database
@@ -163,37 +162,83 @@ if (isset($_POST['submit'])) {
                 <span class="sr-only">Next</span>
             </a>
         </div>
+    </div>
+    <div class="spcacer" style="height: 100px;"></div>
+
+    <!-- Gallery Content -->
+    <div class="container-fluid">
+
+        <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Thumbnail Gallery</h1>
+
+        <hr class="mt-2 mb-5">
+
+        <div class="row text-center text-lg-start mb-4">
+            <?php
+            $sql = "SELECT * FROM gallery";
+            $result =  mysqli_query($conn, $sql);
+            $number_of_images = mysqli_num_rows($result);
+            for ($i = 0; $i < $number_of_images; $i++) {
+                $row = mysqli_fetch_assoc($result);
+
+            ?>
+
+                <div class="col-lg-3 col-md-4 col-6">
+
+                    <a href="#" class="d-blockh-100">
+                        <img src="images/<?php echo $row['images']; ?>" class="img-fluid img-thumbnail" alt="">
+                    </a>
+                    <?php
+                    echo "<form method='GET' action='" . deleteGallery($conn) . "'>
+                    <input type='hidden' name='id' value=' " . $row['id'] . " '>
+        <button class='btn btn-danger' type='submit' name='deleteImage'>Delete</button>
+    </form>";
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+                    ?>
+                    <br>
+                </div>
 
-        <script>
-            $(function() {
 
-                var multiImgPreview = function(input, imgPreviewPlaceholder) {
+            <?php
+            }
+            ?>
 
-                    if (input.files) {
-                        var filesAmount = input.files.length;
 
-                        for (i = 0; i < filesAmount; i++) {
-                            var reader = new FileReader();
 
-                            reader.onload = function(event) {
-                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
-                            }
+        </div>
 
-                            reader.readAsDataURL(input.files[i]);
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <script>
+        $(function() {
+
+            var multiImgPreview = function(input, imgPreviewPlaceholder) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
                         }
+
+                        reader.readAsDataURL(input.files[i]);
                     }
+                }
 
-                };
+            };
 
-                $('#chooseFile').on('change', function() {
-                    multiImgPreview(this, 'div.imgGallery');
-                });
+            $('#chooseFile').on('change', function() {
+                multiImgPreview(this, 'div.imgGallery');
             });
-        </script>
+        });
+    </script>
 
 
 </body>

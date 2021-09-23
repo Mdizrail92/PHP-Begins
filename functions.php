@@ -59,5 +59,17 @@ function getComments($conn)
         echo "</div>";
     }
 }
-
 // comment section ends
+
+
+// delete gallery images
+function deleteGallery($conn)
+{
+    if (isset($_GET['deleteImage'])) {
+        $id = $_GET['id'];
+        $sql = "select image from gallery where id='$id'";
+        $image = mysqli_query($conn, $sql);
+        $result = "delete from gallery where id='$id'";
+        $delete =  mysqli_query($conn, $result);
+    }
+}
