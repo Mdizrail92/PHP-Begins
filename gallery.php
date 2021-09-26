@@ -42,7 +42,9 @@ if (isset($_POST['submit'])) {
             }
             // Add into MySQL database
             if (!empty($sqlVal)) {
+
                 $insert = $conn->query("INSERT INTO gallery (images, date_time) VALUES $sqlVal");
+
                 if ($insert) {
                     $response = array(
                         "status" => "alert-success",
@@ -106,6 +108,7 @@ if (isset($_POST['submit'])) {
                 <input type="file" name="fileUpload[]" class="custom-file-input" id="chooseFile" multiple>
                 <label class="custom-file-label" for="chooseFile">Select file</label>
             </div>
+
 
             <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
                 Upload Files
@@ -187,6 +190,8 @@ if (isset($_POST['submit'])) {
                     <a href="#" class="d-blockh-100">
                         <img src="images/<?php echo $row['images']; ?>" class="img-fluid img-thumbnail" alt="">
                     </a>
+                    <br>
+                    <p><?php echo $row['description']; ?></p>
                     <?php
                     echo "<form method='GET' action='" . deleteGallery($conn) . "'>
                     <input type='hidden' name='id' value=' " . $row['id'] . " '>
