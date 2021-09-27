@@ -98,13 +98,25 @@ function editComments($conn)
 
 
 // delete gallery images
-function deleteGallery($conn)
+
+
+function editGallery($conn)
 {
-    if (isset($_GET['deleteImage'])) {
-        $id = $_GET['id'];
+    if (isset($_POST['descriptionSubmit'])) {
+        $id = $_POST['id'];
+
+        $description = $_POST['description'];
+        $sql = "UPDATE gallery SET description='$description' WHERE id='$id'";
+
+
+        $result =  mysqli_query($conn, $sql);
+        header("Location: gallery.php");
+    } else if (isset($_POST['deleteImage'])) {
+        $id = $_POST['id'];
         $sql = "select image from gallery where id='$id'";
         $image = mysqli_query($conn, $sql);
         $result = "delete from gallery where id='$id'";
         $delete =  mysqli_query($conn, $result);
+        header("Location: gallery.php");
     }
 }

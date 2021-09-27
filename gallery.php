@@ -193,11 +193,13 @@ if (isset($_POST['submit'])) {
                     <br>
                     <p><?php echo $row['description']; ?></p>
                     <?php
-                    echo "<form method='GET' action='" . deleteGallery($conn) . "'>
-                    <input type='hidden' name='id' value=' " . $row['id'] . " '>
-        <button class='btn btn-danger' type='submit' name='deleteImage'>Delete</button>
-    </form>";
 
+                    echo "<form method='POST' action='editDescription.php'>
+                    <input type='hidden' name='id' value='" . $row['id'] . "'>
+                    <input type='hidden' name='date_time' value='" . $row['date_time'] . "'>
+                    <input type='hidden' name='description' value='" . $row['description'] . "'>   <br> 
+<button class='btn btn-primary' type='submit'>Edit</button>
+</form>";
 
                     ?>
                     <br>

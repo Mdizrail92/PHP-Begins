@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['user_name'];
     $password = $_POST['password'];
 
+
     if (!empty($username) && !empty($password) && !is_numeric($username)) {
 
         // Check whether this username exists
@@ -25,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             //save to database
             $user_id = random_num(20);
+            $password = password_hash($password, PASSWORD_DEFAULT);
             $query = "insert into users (name, email, phone, user_id, username, password) values ('$name','$email', '$phone', '$user_id', '$username', '$password')";
 
             mysqli_query($conn, $query);
