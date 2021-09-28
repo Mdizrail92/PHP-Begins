@@ -33,10 +33,19 @@ date_default_timezone_set('Asia/Kolkata');
         <br>
         <a href="gallery.php">Go to gallery</a>
         <br>
+        <?php
+        $sql = "SELECT `id`, `images` FROM `gallery`";
+        $result =  mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+            $images[$row['id']] = $row; //the $images array will store the images id from image_tb as an index, so you can call it directly like $images[x]
+        }
+        $random_img = array_rand($images); // this will give you a random image
+        ?>
 
         <div class="spacer" style="height: 100px;"></div>
         <!-- comment section -->
-        <img src="images/gal-gadotas (1).jpg" alt="">
+        <img src="images/<?php print_r($images[$random_img][1]); ?>">
         <div class="spacer" style="height: 30px;"></div>
         <?php
         echo "<form method='POST' action='" . setComments($conn) . "'>
