@@ -187,7 +187,7 @@ if (isset($_POST['submit'])) {
 
                 <div class="col-lg-3 col-md-4 col-6">
 
-                    <a href="#" class="d-blockh-100">
+                    <a href="post.php?gid=<?php echo $row['id']; ?>" class="d-blockh-100">
                         <img src="images/<?php echo $row['images']; ?>" class="img-fluid img-thumbnail" alt="">
                     </a>
                     <br>

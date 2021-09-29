@@ -24,6 +24,11 @@ date_default_timezone_set('Asia/Kolkata');
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Document</title>
 
+    <?php
+    $photoid = $_GET['gid'];
+
+
+    ?>
 </head>
 
 <body>
@@ -34,32 +39,31 @@ date_default_timezone_set('Asia/Kolkata');
         <a href="gallery.php">Go to gallery</a>
         <br>
         <?php
-        $sql = "SELECT * FROM `gallery`";
+        $sql = "SELECT * FROM `gallery` WHERE `id`='$photoid'";
         $result =  mysqli_query($conn, $sql);
 
-        while ($row = mysqli_fetch_array($result)) {
-            $images[$row['id']] = $row; //the $images array will store the images id from image_tb as an index, so you can call it directly like $images[x]
-        }
-        $random_img = array_rand($images); // this will give you a random image
+        $row = mysqli_fetch_array($result);
+
         ?>
 
         <div class="spacer" style="height: 100px;"></div>
         <!-- comment section -->
-        <img src="images/<?php print_r($images[$random_img][1]); ?>">
+        <img src="images/<?php echo $row['images']; ?>">
         <div class="spacer" style="height: 10px;"></div>
-        <p><?php print_r($images[$random_img][2]); ?></p>
+        <p><?php print_r($row['date_time']); ?></p>
         <div class="spacer" style="height: 10px;"></div>
-        <p><?php print_r($images[$random_img][3]); ?></p>
+        <p><?php print_r($row['description']); ?></p>
         <div class="spacer" style="height: 30px;"></div>
         <?php
-        echo "<form method='POST' action='" . setComments($conn) . "'>
+        echo "<form method='POST' action='" . setCommentsPost($conn) . "'>
         <input type='hidden' name='uid' value='" . $user_data['id'] . "'>
+        <input type='hidden' name='gid' value='" . $photoid . "'>
         <input type='hidden' name='date' value='" . date('Y-m-d H:i:s') . "'>
         <textarea rows='4' cols='50' name='message'></textarea>    <br>  
         <button type='submit' name='commentSubmit'>Comment</button>
     </form>";
 
-        getComments($conn);
+        getCommentsPost($conn, $photoid);
         ?>
         <!-- comment section ends -->
 
