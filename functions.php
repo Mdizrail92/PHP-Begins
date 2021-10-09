@@ -70,7 +70,7 @@ function getComments($conn)
     $sql = "SELECT * FROM comments";
     $result =  mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='comment mt-4 text-justify'><p>";
+        echo "<div class='comment text-justify'><p>";
         $sql = "SELECT  `username` FROM `users` WHERE `id`='$row[uid]'";
         $username = mysqli_fetch_assoc(mysqli_query($conn, $sql));
         echo $username['username'] . "<br>";
@@ -78,7 +78,7 @@ function getComments($conn)
         echo $row['date'] . "<br>";
         echo nl2br($row['message']);
         if ($_SESSION['id'] == $row['uid']) {
-            echo "</p>
+            echo "</div><div class='edit'></p>
         <form method='POST' action='editcomment.php'>
         <input type='hidden' name='cid' value='" . $row['cid'] . "'>
         <input type='hidden' name='uid' value='" . $row['uid'] . "'>
@@ -140,7 +140,7 @@ function editComments($conn)
 
         $sql = "Delete from comments WHERE cid='$cid'";
         $result =  mysqli_query($conn, $sql);
-        header("Location: index.php");
+        header("Location: random-post.php");
     }
 }
 
@@ -157,11 +157,8 @@ function editGallery($conn)
 {
     if (isset($_POST['descriptionSubmit'])) {
         $id = $_POST['id'];
-
         $description = $_POST['description'];
         $sql = "UPDATE gallery SET description='$description' WHERE id='$id'";
-
-
         $result =  mysqli_query($conn, $sql);
         header("Location: gallery.php");
     } else if (isset($_POST['deleteImage'])) {

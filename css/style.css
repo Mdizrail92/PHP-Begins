@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* background-image: linear-gradient(to right, rgb(255 14 14 / 67%), rgb(86 126 255)); */
+    background: rgb(0, 0, 0);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    color: #d3d3d3;
+    scroll-behavior: smooth;
+}
+
+.home {
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.form__group input {
+    background: black;
+    outline: none;
+    color: white;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 22px;
+    text-align: center;
+    border: 1px solid #91ceff;
+}
+
+.form__group textarea {
+    background: black;
+    outline: none;
+    color: white;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 22px;
+    text-align: center;
+    border: 1px solid #91ceff;
+}
+
+
+.edit button {
+    background: black;
+    color: white;
+    padding: 7px 28px;
+
+    border-radius: 22px;
+    text-align: center;
+    border: 1px solid #2cc14e;
+}
+
+.comment {
+    margin-top: 40px;
+}
+
+.post-description {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+ul li {
+    display: inline;
+    margin: 0 5px;
+}
+
+
+
+footer hr {
+    color: white;
+}
+
+footer ul {
+    margin-right: 28px;
+}

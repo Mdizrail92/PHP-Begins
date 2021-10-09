@@ -1,19 +1,3 @@
-<?php
-session_start();
-
-include("connection.php");
-include("functions.php");
-
-$user_data = check_login($conn);
-
-date_default_timezone_set('Asia/Kolkata');
-
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,51 +5,21 @@ date_default_timezone_set('Asia/Kolkata');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="plugins/bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home.css?v=<?php echo time(); ?>">
+    <title>Home</title>
 </head>
 
 <body>
-    <div class="container">
-        <a href="logout.php">Logout</a>
-        <h1>Hello World From <?php echo $user_data['username']; ?></h1>
-        <br>
-        <a href="gallery.php">Go to gallery</a>
-        <br>
-        <?php
-        $sql = "SELECT * FROM `gallery`";
-        $result =  mysqli_query($conn, $sql);
-
-        while ($row = mysqli_fetch_array($result)) {
-            $images[$row['id']] = $row; //the $images array will store the images id from image_tb as an index, so you can call it directly like $images[x]
-        }
-        $random_img = array_rand($images); // this will give you a random image
-        ?>
-
-        <div class="spacer" style="height: 100px;"></div>
-        <!-- comment section -->
-        <img src="images/<?php print_r($images[$random_img][1]); ?>">
-        <div class="spacer" style="height: 10px;"></div>
-        <p><?php print_r($images[$random_img][2]); ?></p>
-        <div class="spacer" style="height: 10px;"></div>
-        <p><?php print_r($images[$random_img][3]); ?></p>
-        <div class="spacer" style="height: 30px;"></div>
-        <?php
-        echo "<form method='POST' action='" . setComments($conn) . "'>
-        <input type='hidden' name='uid' value='" . $user_data['id'] . "'>
-        <input type='hidden' name='date' value='" . date('Y-m-d H:i:s') . "'>
-        <textarea rows='4' cols='50' name='message'></textarea>    <br>  
-        <button type='submit' name='commentSubmit'>Comment</button>
-    </form>";
-
-        getComments($conn);
-        ?>
-        <!-- comment section ends -->
-
+    <div class="home text-center">
+        <h1>Hi, I am Israil Alam</h1>
+        <h2>Artist, Web Developer, Teacher</h2>
+        <a class="btn btn-home" href="login.php">Login</a>
+        <a class="btn btn-home" href="random-post.php">Posts</a>
     </div>
-
-
 </body>
 
 </html>

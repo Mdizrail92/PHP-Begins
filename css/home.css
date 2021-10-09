@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    /* background-image: linear-gradient(to right, rgb(255 14 14 / 67%), rgb(86 126 255)); */
+    background: rgb(157, 7, 7);
+    background-image: linear-gradient(rgb(0 0 0 / 28%), rgb(0 0 0 / 65%)), url(../images/black-panther-16.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    height: 100vh;
+    color: #d3d3d3;
+    scroll-behavior: smooth;
+}
+
+.home {
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.home h1 {
+    font-size: 46px;
+    font-weight: 600;
+}
+
+.home h2 {
+    font-size: 20px;
+
+}
+
+.btn-home {
+    color: #e7e7e7;
+    background-color: #06060cb8;
+    padding: 8px 20px;
+}
+
+.btn-home:hover {
+    color: #cccbcb;
+}
