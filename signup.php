@@ -4,9 +4,14 @@ session_start();
 include("connection.php");
 include("functions.php");
 
+
+
 $showError = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //something was posted
+
+
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -25,9 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $showError = "Username Already Exists";
         } else {
             //save to database
+
+            $image = $_FILES['image'] ?? null;
+            $imagePath = '';
+            if ($image) {
+                $imagePath = 'profiles/' . $image['name'];
+                move_uploaded_file($image['tmp_name'], $imagePath);
+            }
+
             $user_id = random_num(20);
             $password = password_hash($password, PASSWORD_DEFAULT);
-            $query = "insert into users (name, email, phone, user_id, username, password) values ('$name','$email', '$phone', '$user_id', '$username', '$password')";
+            $query = "insert into users (name, email, phone, profile_image , user_id, username, password) values ('$name','$email', '$phone', '$imagePath', '$user_id', '$username', '$password')";
 
             mysqli_query($conn, $query);
             header("Location: login.php");
@@ -78,10 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>Please enter your Id and Password</p>
             <div class="form__group field">
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <input type="text" class="form__field" placeholder="Name" name="name">
                     <input type="email" class="form__field" placeholder="Email" name="email" required>
                     <input type="tel" class="form__field" placeholder="Phone no." name="phone">
+                    <input type="file" name="image">
                     <input type="text" class="form__field" placeholder="username" name="user_name">
                     <input type="password" class="form__field" placeholder="password" name="password">
                     <div>
@@ -103,12 +117,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <ul>
 
-                <li> <a href=" "><i style="color: rgb(163, 163, 163);" class="fab fa-github"></i></a> </li>
-                <li> <a href=" "><i style="color: rgb(15, 112, 177);" class="fab fa-facebook"></i></a></li>
-                <li> <a href=" "> <i style="color:#ff8744bd" class="fab fa-instagram"></i></a></li>
+                <li> <a href=" https://github.com/Mdizrail92"><i style="color: rgb(163, 163, 163);" class="fab fa-github"></i></a> </li>
+                <li> <a href="https://www.facebook.com/profile.php?id=100007950183884 "><i style="color: rgb(15, 112, 177);" class="fab fa-facebook"></i></a></li>
+                <li> <a href="https://www.instagram.com/israil_92/ "> <i style="color:#ff8744bd" class="fab fa-instagram"></i></a></li>
 
                 <li> <a href=" "> <i style="color: rgb(211, 159, 15);" class="fab fa-snapchat-ghost"></i></a></li>
-                <li> <a href=" "> <i style="color: rgb(59, 146, 228);" class="fab fa-twitter"></i></a></li>
+                <li> <a href="https://twitter.com/Izrail03620970 "> <i style="color: rgb(59, 146, 228);" class="fab fa-twitter"></i></a></li>
 
             </ul>
             <hr>

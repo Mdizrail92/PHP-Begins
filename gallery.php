@@ -236,12 +236,12 @@ if (isset($_POST['submit'])) {
 
             <ul>
 
-                <li> <a href=" "><i style="color: rgb(163, 163, 163);" class="fab fa-github"></i></a> </li>
-                <li> <a href=" "><i style="color: rgb(15, 112, 177);" class="fab fa-facebook"></i></a></li>
-                <li> <a href=" "> <i style="color:#ff8744bd" class="fab fa-instagram"></i></a></li>
+                <li> <a href=" https://github.com/Mdizrail92"><i style="color: rgb(163, 163, 163);" class="fab fa-github"></i></a> </li>
+                <li> <a href="https://www.facebook.com/profile.php?id=100007950183884 "><i style="color: rgb(15, 112, 177);" class="fab fa-facebook"></i></a></li>
+                <li> <a href="https://www.instagram.com/israil_92/ "> <i style="color:#ff8744bd" class="fab fa-instagram"></i></a></li>
 
                 <li> <a href=" "> <i style="color: rgb(211, 159, 15);" class="fab fa-snapchat-ghost"></i></a></li>
-                <li> <a href=" "> <i style="color: rgb(59, 146, 228);" class="fab fa-twitter"></i></a></li>
+                <li> <a href="https://twitter.com/Izrail03620970 "> <i style="color: rgb(59, 146, 228);" class="fab fa-twitter"></i></a></li>
 
             </ul>
             <hr>

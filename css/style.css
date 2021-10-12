@@ -22,6 +22,18 @@ body {
     scroll-behavior: smooth;
 }
 
+.username {
+    display: inline;
+
+}
+
+.profile_pic {
+
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
 .home {
 
     position: absolute;
