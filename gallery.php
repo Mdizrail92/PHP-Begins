@@ -183,6 +183,18 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="spcacer" style="height: 100px;"></div>
 
+
+    <form action="">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search for actors" name="search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+    </form>
+
+
+
+    </div>
     <!-- Gallery Content -->
     <div class="container-fluid">
 
@@ -192,8 +204,16 @@ if (isset($_POST['submit'])) {
 
         <div class="row text-center text-lg-start mb-4">
             <?php
-            $sql = "SELECT * FROM gallery";
-            $result =  mysqli_query($conn, $sql);
+            $search = $_GET['search'] ?? '';
+            if ($search) {
+                $sql = "SELECT * FROM gallery WHERE description LIKE '%$search%'";
+                $result =  mysqli_query($conn, $sql);
+            } else {
+                $sql = "SELECT * FROM gallery";
+                $result =  mysqli_query($conn, $sql);
+            }
+
+
             $number_of_images = mysqli_num_rows($result);
             for ($i = 0; $i < $number_of_images; $i++) {
                 $row = mysqli_fetch_assoc($result);

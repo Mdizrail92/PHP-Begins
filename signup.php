@@ -30,18 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $showError = "Username Already Exists";
         } else {
             //save to database
-
             $image = $_FILES['image'] ?? null;
             $imagePath = '';
             if ($image) {
                 $imagePath = 'profiles/' . $image['name'];
                 move_uploaded_file($image['tmp_name'], $imagePath);
             }
-
             $user_id = random_num(20);
             $password = password_hash($password, PASSWORD_DEFAULT);
             $query = "insert into users (name, email, phone, profile_image , user_id, username, password) values ('$name','$email', '$phone', '$imagePath', '$user_id', '$username', '$password')";
-
             mysqli_query($conn, $query);
             header("Location: login.php");
             die;
@@ -63,10 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <link rel="stylesheet" href="plugins/bootstrap-4.6.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>">
-
     <title>Sign Up</title>
 
 </head>
